@@ -12,20 +12,24 @@ RabbitMQ
 в каталоге, содержащем файл manage.py, для создания таблиц базы данных:
 
 python3 manage.py makemigrations upload
+
 python3 manage.py migrate
 
 В этом же каталоге нужно создать каталоги для логов и загружаемых файлов:
 
 mkdir logs
+
 mkdir files
 
 В демонстрационной версии приложения используется база данных SQLite3.
 Для демонстрации работы приложение запускается локально.
 
 Запуск приложения через gunicorn:
+
 gunicorn3 bigfiles.wsgi:application --bind 127.0.0.1:8000 --workers 5 --timeout 1000
 
 Запуск Celery:
+
 celery -A bigfiles worker -l info
 
 По URL 127.0.0.1:8000 открывается страница загрузки файла.
