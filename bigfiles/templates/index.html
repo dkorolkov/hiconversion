@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script src="/static/js/jquery-3.2.1.js"></script>
+        <script src="/static/js/upload.js"></script>
+    </head>
+    <body>
+        <form id="upload_form" action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="upload">
+            {% comment %}
+            <input type="file" name="uploadfile">
+            {% endcomment %}
+        </form>
+        <p id="message"></p>
+        <h2>Uploading</h2>
+        <table id="upload_table">
+            <tr class="head-row"><th>id</th><th>name</th><th>progress</th></tr>
+            {% for p in process_list %}
+            {% if p.process == 'upload' %}
+            <tr id="upload_row_{{ p.id }}" class="data-row"><td>{{ p.key }}</td><td>{{ p.name }}</td><td>{{ p.progress }}</td></tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        <h2>Processing</h2>
+        <table id="process_table">
+            <tr class="head-row"><th>id</th><th>name</th><th>progress</th></tr>
+            {% for p in process_list %}
+            {% if p.process == 'count' %}
+            <tr id="process_row_{{ p.id }}" class="data-row"><td>{{ p.key }}</td><td>{{ p.name }}</td><td>{{ p.progress }}</td></tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+        <h2>Results</h2>
+        <table id="result_table">
+            <tr class="head-row"><th>id</th><th>name</th><th>result</th></tr>
+            {% for f in file_list %}
+            <tr id="result_row_{{ p.id }}" class="data-row"><td>{{ f.id }}</td><td>{{ f.name }}</td><td>{{ f.result }}</td></tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
