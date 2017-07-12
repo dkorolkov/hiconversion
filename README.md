@@ -11,7 +11,7 @@ RabbitMQ
 После установки приложения из репозитория, необходимо выполнить команды
 в каталоге, содержащем файл manage.py, для создания таблиц базы данных:
 
-python3 manage.py makemigrations update
+python3 manage.py makemigrations upload
 python3 manage.py migrate
 
 В этом же каталоге нужно создать каталоги для логов и загружаемых файлов:
